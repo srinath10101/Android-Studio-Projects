@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.icu.util.GregorianCalendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -34,17 +35,22 @@ public class AddSubjects extends AppCompatActivity {
                 EditText f = (EditText) findViewById(R.id.edt2);
 
                 if(entireday.length()!=0){
-                    TimeTableHelper tth = new TimeTableHelper(getApplicationContext());
-                    SQLiteDatabase db = tth.getWritableDatabase();
+                    try {
+                        TimeTableHelper tth = new TimeTableHelper(getApplicationContext());
+                        SQLiteDatabase db = tth.getWritableDatabase();
 
-                    ContentValues values = new ContentValues();
-                    values.put(TimeTableContract.TestEntry.COLUMN_NAME_SUBJECTNAME,e.getText().toString());
-                    values.put(TimeTableContract.TestEntry.COLUMN_NAME_DATEOFTEST,entireday);
-                    values.put(TimeTableContract.TestEntry.COLUMN_NAME_SUBJECTNAME,f.getText().toString());
+                        ContentValues values = new ContentValues();
+                        values.put(TimeTableContract.TestEntry.COLUMN_NAME_SUBJECTNAME, e.getText().toString());
+                        values.put(TimeTableContract.TestEntry.COLUMN_NAME_DATEOFTEST, entireday);
+                        values.put(TimeTableContract.TestEntry.COLUMN_NAME_SUBJECTNAME, f.getText().toString());
 
-                    long newID = db.insert(TimeTableContract.TestEntry.TABLE_NAME,null,values);
-
+                        long newID = db.insert(TimeTableContract.TestEntry.TABLE_NAME, null, values);
+                    }
+                    catch(Exception E){
+                        Toast.makeText(AddSubjects.this, E.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                     Toast.makeText(AddSubjects.this, "I'll make sure to notify you :)", Toast.LENGTH_SHORT).show();
+
                 }
                 else Toast.makeText(AddSubjects.this, "Enter all details!", Toast.LENGTH_SHORT).show();
 
@@ -56,6 +62,7 @@ public class AddSubjects extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent i = new Intent(getApplicationContext(),TimeTable.class);
+                i.putExtra("hello","hello");
                 startActivity(i);
             }
         });
@@ -83,6 +90,8 @@ public class AddSubjects extends AppCompatActivity {
                     entireday= "Saturday, "+dd+"-"+mm+"-"+yyyy;
             }
         });
+
+
 
     }
 

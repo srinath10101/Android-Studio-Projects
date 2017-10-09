@@ -3,14 +3,18 @@ package com.srinathv.unit_tests;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class TimeTable extends AppCompatActivity {
+    public static TimeTableHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,28 @@ public class TimeTable extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        TextView t = (TextView) findViewById(R.id.txt);
+
+        try{
+            dbHelper = new TimeTableHelper(this);
+            Cursor cursor = dbHelper.getAllSubjects();
+            String subject = "";
+            String entire = "";
+            String portions = "";
+            String con = cursor.moveToNext() + "";
+            Toast.makeText(this,con, Toast.LENGTH_SHORT).show();
+            while(cursor.moveToNext()){
+                subject = cursor.getString(cursor.getColumnIndex(TimeTableContract.TestEntry.COLUMN_NAME_SUBJECTNAME));
+                entire = cursor.getString(cursor.getColumnIndex(TimeTableContract.TestEntry.COLUMN_NAME_DATEOFTEST));
+                portions = cursor.getString(cursor.getColumnIndex(TimeTableContract.TestEntry.COLUMN_NAME_PORTIONS));
+                t.setText(subject+"");
+            }
+        }
+        catch(Exception e){
+            Toast.makeText(this, e.getMessage()+"", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
