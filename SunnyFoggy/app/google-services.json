@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "434622753423",
+    "firebase_url": "https://weatherproject-53497.firebaseio.com",
+    "project_id": "weatherproject-53497",
+    "storage_bucket": "weatherproject-53497.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434622753423:android:d1a2a7866df83adf",
+        "android_client_info": {
+          "package_name": "com.srinathv.sunnyfoggy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434622753423-qsnagjpgkn30jgfksv10b8m9g7t6279v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvnWlL7iSiQRK5UkN_ElcZk-HlvyZOV20"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
