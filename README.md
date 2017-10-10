@@ -1,4 +1,2 @@
-# Unit-test
-This repository will contain the code for the app I'm working on.
-It is an app to store the details of an upcoming test, on your phone, so that you 
-don't forget it.
+# Android-Studio-Projects
+This repository will contain the apps that I have developed using Android Studio.
